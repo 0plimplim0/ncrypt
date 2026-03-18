@@ -4,10 +4,7 @@ class Screen {
   public:
   void initScreen();
   void closeScreen();
-  int mainMenu();
-
-  private:
-  void showBanner(WINDOW* w, int x, int y);
-  void showOptions(WINDOW* w, int x, int y);
-  void handlePos(WINDOW* w, int y);
+  WINDOW* newWindow(int height, int width);
+  void closeWindow(WINDOW* w);
+  void insertText(WINDOW* w, const char* text, int x, int y, bool emptyLines);
 };

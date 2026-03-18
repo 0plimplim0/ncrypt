@@ -2,27 +2,45 @@
 
 #include <ncurses.h>
 
+// Just for testing:/
+const char* banner = R"(
+           $$$$$$\                                 $$\
+          $$  __$$\                                $$ |
+$$$$$$$\  $$ /  \__| $$$$$$\  $$\   $$\  $$$$$$\ $$$$$$\
+$$  __$$\ $$ |      $$  __$$\ $$ |  $$ |$$  __$$\\_$$  _|
+$$ |  $$ |$$ |      $$ |  \__|$$ |  $$ |$$ /  $$ | $$ |
+$$ |  $$ |$$ |  $$\ $$ |      $$ |  $$ |$$ |  $$ | $$ |$$\
+$$ |  $$ |\$$$$$$  |$$ |      \$$$$$$$ |$$$$$$$  | \$$$$  |
+\__|  \__| \______/ \__|       \____$$ |$$  ____/   \____/
+                              $$\   $$ |$$ |
+                              \$$$$$$  |$$ |
+                               \______/ \__|
+)";
+const char* options = R"(
+1. P L A Y
+
+2. L E A D E R B O A R D
+
+3. E X I T
+)";
+
 int main() {
 
+  // Init process
   Screen screen;
   screen.initScreen();
 
-  bool running = true;
+  auto* win = screen.newWindow(40, 80);
+  box(win, 0, 0);
 
-  while (running) {
-    int selection = screen.mainMenu();
+  screen.insertText(win, banner, 10, 5, false);
+  screen.insertText(win, options, 30, 20, true);
 
-    switch (selection) {
-      case 1:
-        break;
-      case 2:
-        break;
-      case 3:
-        running = false;
-        break; 
-    }
-  }
+  wrefresh(win);
+  getch();
 
+  // Close process
+  screen.closeWindow(win);
   screen.closeScreen();
   return 0;
 }
