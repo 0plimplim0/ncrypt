@@ -16,11 +16,12 @@ void Screen::closeScreen() {
 }
 
 int Screen::mainMenu() {
+  clear();
   int y = 13, x = 16;
   int ch = 0;
 
   while (true){
-    clear();
+    erase();
     showBanner();
     showOptions();
 
