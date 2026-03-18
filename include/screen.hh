@@ -1,3 +1,5 @@
+#include <ncurses.h>
+
 class Screen {
   public:
   void initScreen();
@@ -5,7 +7,7 @@ class Screen {
   int mainMenu();
 
   private:
-  void showBanner();
-  void showOptions();
-  void handlePos(int y);
+  void showBanner(WINDOW* w, int x, int y);
+  void showOptions(WINDOW* w, int x, int y);
+  void handlePos(WINDOW* w, int y);
 };
