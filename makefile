@@ -4,8 +4,8 @@ LDFLAGS = -lncursesw
 SRC_DIR = src
 BUILD_DIR = build
 
-SRCS = $(SRC_DIR)/main.cc $(SRC_DIR)/screen.cc
-OBJS = $(BUILD_DIR)/main.o $(BUILD_DIR)/screen.o
+SRCS = $(SRC_DIR)/main.cc $(SRC_DIR)/screen.cc $(SRC_DIR)/gamemanager.cc
+OBJS = $(BUILD_DIR)/main.o $(BUILD_DIR)/screen.o $(BUILD_DIR)/gamemanager.o
 TARGET = $(BUILD_DIR)/ncrypt
 
 all: $(TARGET)
