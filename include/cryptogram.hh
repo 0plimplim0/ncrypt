@@ -4,7 +4,9 @@
 #include <unordered_map>
 
 class Cryptogram {
+  public:
+  void static generateMap(std::unordered_map<char, int>& umap);
+
   private:
-  void generateMap(std::unordered_map<char, int>& umap);
-  int generateRandInt();
+  int static generateRandInt();
 };

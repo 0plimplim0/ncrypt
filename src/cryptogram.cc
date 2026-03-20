@@ -8,7 +8,7 @@
 
 // TODO: Improve chars mapping to support more chars
 void Cryptogram::generateMap(std::unordered_map<char, int>& umap){
-  const static char chars[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'm', 'n', 'l', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+  const static char chars[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
   std::vector<int> nums;
   umap.insert({' ', 0});
   for (char c : chars) {
@@ -16,10 +16,12 @@ void Cryptogram::generateMap(std::unordered_map<char, int>& umap){
     do {
       num = generateRandInt();
     } while ((std::find(nums.begin(), nums.end(), num)) != nums.end());
+    nums.push_back(num);
     umap.insert({c, num});
   }
 }
 
+// TODO: refactor to shuffle vector
 int Cryptogram::generateRandInt() {
   static std::random_device rd;
   static std::mt19937 gen(rd());

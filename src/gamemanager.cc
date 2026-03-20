@@ -1,7 +1,9 @@
 #include "gameManager.hh"
 #include "screen.hh"
+#include "cryptogram.hh"
 
 #include <ncurses.h>
+#include <unordered_map>
 
 int GameManager::mainMenuScreen(Screen& scr) {
   auto* win = scr.newWindow(40, 80);
@@ -35,7 +37,24 @@ int GameManager::mainMenuScreen(Screen& scr) {
 void GameManager::playScreen(Screen& scr) {
   auto* win = scr.newWindow(40, 80);
   werase(win);
-  mvwprintw(win, 1, 1, "Play screen");
+
+  // Variables
+  std::string phrase = "this is a test";
+  std::unordered_map<char, int> umap;
+  Cryptogram::generateMap(umap);
+  int x = 1;
+  for (char c : phrase) {
+    int ch = umap[c];
+    if (ch != 0) {
+      mvwprintw(win, 1, x, "_");
+      mvwprintw(win, 2, x, "%d ", ch);
+    } else {
+      mvwprintw(win, 2, x, "  ");
+    }
+    if (ch > 9) { x += 3; }
+    else { x += 2; }
+  }
+
   box(win, 0, 0);
   wrefresh(win);
   getch();
