@@ -1,6 +1,10 @@
+// Project headers
 #include "screen.hh"
 #include "gameManager.hh"
+#include "playScreen.hh"
+#include "leaderboardScreen.hh"
 
+// External headers
 #include <ncurses.h>
 
 int main() {
@@ -19,14 +23,17 @@ int main() {
   bool running = true;
   GameManager gm;
   while (running) {
-    int selection = gm.mainMenuScreen(screen);
+    int selection = gm.menuScreen(screen);
+
+    PlayScreen pScreen(screen);
+    LeaderboardScreen lScreen(screen);
     
     switch (selection) {
       case play:
-        gm.playScreen(screen);
+        pScreen.run();
         break;
       case leaderboard:
-        gm.leaderboardScreen(screen);
+        lScreen.run();
         break;
       case exit:
         running = false;

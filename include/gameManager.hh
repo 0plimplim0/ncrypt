@@ -5,7 +5,7 @@
 class GameManager {
 
   public:
-  int mainMenuScreen(Screen& scr);
+  int menuScreen(Screen& scr);
   void playScreen(Screen& scr);
   void leaderboardScreen(Screen& scr);
 

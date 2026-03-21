@@ -5,7 +5,10 @@
 #include <ncurses.h>
 #include <unordered_map>
 
-int GameManager::mainMenuScreen(Screen& scr) {
+// This class is supposed to instanciate Screen and do Screen::initScreen
+
+// TODO: Remove this and make class MenuScreen
+int GameManager::menuScreen(Screen& scr) {
   auto* win = scr.newWindow(40, 80);
   int y = 21, x = 26, ch;
   while(true) {
@@ -32,41 +35,4 @@ int GameManager::mainMenuScreen(Screen& scr) {
         else if (y == 25) { scr.closeWindow(win); return 2; }
     }
   }
-}
-
-void GameManager::playScreen(Screen& scr) {
-  auto* win = scr.newWindow(40, 80);
-  werase(win);
-
-  // Variables
-  std::string phrase = "this is a test";
-  std::unordered_map<char, int> umap;
-  Cryptogram::generateMap(umap);
-  int x = 1;
-  for (char c : phrase) {
-    int ch = umap[c];
-    if (ch != 0) {
-      mvwprintw(win, 1, x, "_");
-      mvwprintw(win, 2, x, "%d ", ch);
-    } else {
-      mvwprintw(win, 2, x, "  ");
-    }
-    if (ch > 9) { x += 3; }
-    else { x += 2; }
-  }
-
-  box(win, 0, 0);
-  wrefresh(win);
-  getch();
-  scr.closeWindow(win);
-}
-
-void GameManager::leaderboardScreen(Screen& scr) {
-  auto* win = scr.newWindow(40, 80);
-  werase(win);
-  mvwprintw(win, 1, 1, "Leaderboard screen");
-  box(win, 0, 0);
-  wrefresh(win);
-  getch();
-  scr.closeWindow(win);
 }
