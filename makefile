@@ -3,8 +3,8 @@ CXXFLAGS = -Wall -Wextra -std=c++23 -I./include
 LDFLAGS = -lncursesw
 SRC_DIR = src
 BUILD_DIR = build
-SRC_GAME_SCREENS = $(SRC_DIR)/playScreen.cc $(SRC_DIR)/leaderboardScreen.cc
-BUILD_GAME_SCREENS = $(BUILD_DIR)/playScreen.o $(BUILD_DIR)/leaderboardScreen.o
+SRC_GAME_SCREENS = $(SRC_DIR)/playScreen.cc $(SRC_DIR)/leaderboardScreen.cc $(SRC_DIR)/menuScreen.cc
+BUILD_GAME_SCREENS = $(BUILD_DIR)/playScreen.o $(BUILD_DIR)/leaderboardScreen.o $(BUILD_DIR)/menuScreen.o
 
 SRCS = $(SRC_DIR)/main.cc $(SRC_DIR)/screen.cc $(SRC_DIR)/gamemanager.cc $(SRC_DIR)/cryptogram.cc $(SRC_GAME_SCREENS)
 OBJS = $(BUILD_DIR)/main.o $(BUILD_DIR)/screen.o $(BUILD_DIR)/gamemanager.o $(BUILD_DIR)/cryptogram.o $(BUILD_GAME_SCREENS)

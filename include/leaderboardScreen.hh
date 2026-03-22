@@ -10,11 +10,10 @@ class LeaderboardScreen {
   public:
     LeaderboardScreen(Screen& scr);
     ~LeaderboardScreen();
+    void run();
+  private:
     void initScreen();
     void closeScreen();
-    void run();
-  
-  private:
     WINDOW* m_win = nullptr;
     Screen& scr_helper;
 };

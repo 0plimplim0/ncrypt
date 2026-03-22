@@ -10,11 +10,11 @@ class PlayScreen {
   public:
     PlayScreen(Screen& scr);
     ~PlayScreen();
-    void initScreen();
-    void closeScreen();
     void run();
 
   private:
+    void initScreen();
+    void closeScreen();
     WINDOW* m_win = nullptr;
     Screen& scr_helper;
 };

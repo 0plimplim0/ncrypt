@@ -3,6 +3,7 @@
 #include "gameManager.hh"
 #include "playScreen.hh"
 #include "leaderboardScreen.hh"
+#include "menuScreen.hh"
 
 // External headers
 #include <ncurses.h>
@@ -14,6 +15,10 @@ int main() {
   screen.initScreen();
   refresh();
 
+  PlayScreen pScreen(screen);
+  LeaderboardScreen lScreen(screen);
+  MenuScreen mScreen(screen);
+
   enum Screens {
     play,
     leaderboard,
@@ -21,12 +26,8 @@ int main() {
   };
   
   bool running = true;
-  GameManager gm;
   while (running) {
-    int selection = gm.menuScreen(screen);
-
-    PlayScreen pScreen(screen);
-    LeaderboardScreen lScreen(screen);
+    int selection = mScreen.run();
     
     switch (selection) {
       case play:
@@ -41,6 +42,7 @@ int main() {
   }
 
   // Close process
+  // TODO: Move this to the destructor of Screen
   screen.closeScreen();
   return 0;
 }
