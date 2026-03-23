@@ -1,21 +1,12 @@
+// Project headers
 #include "screen.hh"
+
+// External headers
 #include <ncurses.h>
 #include <string>
 #include <sstream>
 
-void Screen::initScreen() {
-  initscr();
-  noecho();
-  curs_set(0);
-  cbreak();
-  keypad(stdscr, TRUE);
-  start_color();
-  init_pair(1, COLOR_CYAN, COLOR_BLACK);
-}
-
-void Screen::closeScreen() {
-  endwin();
-}
+// Public
 
 // TODO: Add position enum for more layouts support
 WINDOW* Screen::newWindow(int height, int width) {
@@ -47,4 +38,20 @@ void Screen::insertText(WINDOW* w, const char* text, int x, int y, bool emptyLin
 void Screen::highlightLine(WINDOW* w, int y) {
   int width = getmaxx(w);
   mvwchgat(w, y, 0, width, A_BOLD, 1, NULL);
+}
+
+// Private
+
+void Screen::initScreen() {
+  initscr();
+  noecho();
+  curs_set(0);
+  cbreak();
+  keypad(stdscr, TRUE);
+  start_color();
+  init_pair(1, COLOR_CYAN, COLOR_BLACK);
+}
+
+void Screen::closeScreen() {
+  endwin();
 }
